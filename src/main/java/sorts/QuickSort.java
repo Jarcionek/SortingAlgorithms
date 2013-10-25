@@ -1,5 +1,9 @@
 package sorts;
 
+/**
+ * In-place quick sort.
+ * Space complexity: O(logn)
+ */
 public class QuickSort extends SortingAlgorithm {
 
 	@Override
