@@ -7,7 +7,7 @@ import java.util.List;
  * List based quick sort.
  * Space complexity: O(n)
  */
-public class SimpleQuickSort extends SortingAlgorithm {
+public class ListBasedQuickSort extends SortingAlgorithm {
 
 	@Override
 	public void sort(int[] array) {

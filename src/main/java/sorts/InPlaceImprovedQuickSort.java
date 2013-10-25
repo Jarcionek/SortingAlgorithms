@@ -1,10 +1,10 @@
 package sorts;
 
 /**
- * In-place quick sort.
+ * In-place quick sort. Reduced number of swaps compared to {@link InPlaceSimpleQuickSort}
  * Space complexity: O(logn)
  */
-public class QuickSort extends SortingAlgorithm {
+public class InPlaceImprovedQuickSort extends SortingAlgorithm {
 
 	@Override
 	public void sort(int[] array) {
