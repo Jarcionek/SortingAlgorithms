@@ -43,7 +43,6 @@ public class SimpleQuickSort extends SortingAlgorithm {
 	@SafeVarargs
 	private final List<Integer> concatenate(List<Integer>... lists) {
 		List<Integer> result = new LinkedList<>();
-		result.clear();
 		for (List<Integer> list : lists) {
 			while (!list.isEmpty()) {
 				result.add(list.remove(0));
