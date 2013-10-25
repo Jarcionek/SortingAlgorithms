@@ -20,15 +20,14 @@ public class InPlaceSimpleQuickSort extends SortingAlgorithm {
 	}
 
 	private int partition(int[] array, int left, int right) {
-		int i = left;
-		for (int j = left; j < right; j++) {
-			if (array[j] < array[right]) {
-				swap(array, j, i);
-				i++;
+		int middle = left;
+		for (int i = left; i < right; i++) {
+			if (array[i] < array[right]) {
+				swap(array, i, middle++);
 			}
 		}
-		swap(array, i, right);
-		return i;
+		swap(array, middle, right);
+		return middle;
 	}
 
 }
