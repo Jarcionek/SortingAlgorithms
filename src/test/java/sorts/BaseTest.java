@@ -1,7 +1,6 @@
 package sorts;
 
 import org.junit.Test;
-import utils.ArrayUtils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -11,11 +10,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static utils.Matchers.sameArrayAs;
 import static utils.Matchers.sortedArray;
 
-public class BaseTest {
+public abstract class BaseTest {
 
-	static final int TIMEOUT = 100;
+	private static final int TIMEOUT = 100;
 
-	SortingAlgorithm sortingAlgorithm;
+	protected SortingAlgorithm sortingAlgorithm;
 
 	@Test(timeout = TIMEOUT)
 	public void doesNotFailWhenArrayIsEmpty() {
@@ -57,21 +56,19 @@ public class BaseTest {
 		assertThat(sorted(array(7, 4, 9, 4, 6, 5, 0, 1, 4, 6, 2, 2)), is(sameArrayAs(array(0, 1, 2, 2, 4, 4, 4, 5, 6, 6, 7, 9))));
 	}
 
-	@Test(timeout = 5000)
+	@Test(timeout = 50 * TIMEOUT)
 	public void sortsOneThousandRandomArrays() {
 		for (int i = 0; i < 1000; i++) {
 			int[] randomArray = randomArray();
 
-			int[] algorithmSorted = new int[randomArray.length];
-			System.arraycopy(randomArray, 0, algorithmSorted, 0, randomArray.length);
+			int[] algorithmSorted = Arrays.copyOf(randomArray, randomArray.length);
 			sorted(algorithmSorted);
 
-			int[] correctlySorted = new int[randomArray.length];
-			System.arraycopy(randomArray, 0, correctlySorted, 0, randomArray.length);
+			int[] correctlySorted = Arrays.copyOf(randomArray, randomArray.length);
 			Arrays.sort(correctlySorted);
 
 			if (!sortedArray().matches(algorithmSorted)) {
-				System.out.println(ArrayUtils.arrayAsString(randomArray));
+				System.out.println(Arrays.toString(randomArray));
 			}
 			assertThat(algorithmSorted, is(sameArrayAs(correctlySorted)));
 		}
@@ -86,12 +83,12 @@ public class BaseTest {
 		return array;
 	}
 
-	int[] sorted(int[] array) {
+	private int[] sorted(int[] array) {
 		sortingAlgorithm.sort(array);
 		return array;
 	}
 
-	int[] array(int... elements) {
+	private int[] array(int... elements) {
 		return elements;
 	}
 
